@@ -53,7 +53,7 @@ print("Input: " + str(input_list))
 print("low: " + str(low) + ", high: " + str(high) + ", sum: " + str(sum))
 
 print("========== Plot graph ============")
-number_of_n = [5000, 10000, 50000, 100000, 150000, 200000, 250000, 300000]
+number_of_n = [5000, 10000, 50000, 100000, 200000, 300000, 400000, 500000]
 result_time = []
 theory_time = []
 for each_n in number_of_n:
@@ -67,7 +67,7 @@ for each_n in number_of_n:
     print("Number of n: " + str(each_n))
     print("Process time: " + str(stop_time - start_time) + " seconds" )
 
-    cost = 1/1000000
+    cost = 1/4500000
     theory_time.append(cost * each_n * math.log2(each_n))
 
 plt.title("Maximum sub array problem")

@@ -67,7 +67,7 @@ for each_n in number_of_n:
     print("Number of n: " + str(each_n))
     print("Process time: " + str(stop_time - start_time) + " seconds" )
 
-    cost = 1/4500000
+    cost = 1/4800000
     theory_time.append(cost * each_n * math.log2(each_n))
 
 plt.title("Maximum sub array problem")

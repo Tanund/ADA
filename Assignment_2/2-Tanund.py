@@ -72,7 +72,7 @@ for each_n in number_of_n:
 
 plt.title("Maximum sub array problem")
 plt.xlabel("number of inputs")
-plt.ylabel("time (ms)")
+plt.ylabel("time (sec)")
 plt.plot(number_of_n, result_time, marker="o", color="red", label="code")
 plt.plot(number_of_n, theory_time, marker="o", color="blue", label="theory")
 plt.grid()

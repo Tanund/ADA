@@ -24066,6 +24066,6 @@ Level: 3437
 [7, 6, 5]
 ------Summary---------
 Number of loops: 3527
-Running time: 1.51835469994694
+Running time: 2.1966607000213116
 Max level: 3437
 Remaining states: 2741

@@ -75,13 +75,13 @@ if __name__ == '__main__':
     dir = os.path.dirname(__file__)
     goal_board = [
         [1,2,3],
-        [8,0,4],
-        [7,6,5]
+        [4,5,6],
+        [7,8,0]
         ]
     init_board = [
-        [2,8,3],
-        [1,6,4],
-        [7,0,5]
+        [1,2,3],
+        [0,4,6],
+        [7,5,8]
         ]
     if(isSolvable_new(init_board, goal_board)):
         print("Solvable")

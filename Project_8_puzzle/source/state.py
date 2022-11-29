@@ -1,10 +1,11 @@
 class State:
-    def __init__(self, goal_board, board, g_score, parent_state=None):
+    def __init__(self, goal_board, board, g_score, action=None, parent_state=None):
         self.board = board
         self.goal_board = goal_board
         self.size = len(board)
         self.parent_state = parent_state
         self.g_score = g_score
+        self.action = action
         self.h_score = self.calculate_h()
         self.f_score = self.g_score + self.h_score
 
@@ -29,16 +30,16 @@ class State:
         valid_moves = []
         # move up
         if row_0 - 1 >= 0:
-            valid_moves.append((row_0 - 1, col_0))
+            valid_moves.append((row_0 - 1, col_0, 'up'))
         # move down
         if row_0 + 1 < self.size:
-            valid_moves.append((row_0 + 1, col_0))
+            valid_moves.append((row_0 + 1, col_0, 'down'))
         # move left
         if col_0 - 1 >= 0:
-            valid_moves.append((row_0, col_0 - 1))
+            valid_moves.append((row_0, col_0 - 1, 'left'))
         # move right
-        if row_0 + 1 < self.size:
-            valid_moves.append((row_0, col_0 + 1))
+        if col_0 + 1 < self.size:
+            valid_moves.append((row_0, col_0 + 1, 'right'))
 
         # move and create next states
         next_states = []
@@ -50,7 +51,7 @@ class State:
             original_value = next_board[move[0]][move[1]]
             next_board[row_0][col_0] = original_value
             next_board[move[0]][move[1]] = 0
-            next_states.append(State(self.goal_board, next_board, self.g_score + 1, self))
+            next_states.append(State(self.goal_board, next_board, self.g_score + 1, move[2],  self))
         return next_states
 
 

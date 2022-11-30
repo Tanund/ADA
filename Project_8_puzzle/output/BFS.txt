@@ -1,6 +1,6 @@
 ------Summary---------
 Number of loops: 34
-Running time: 0.003136900020763278
+Running time: 0.0016832000110298395
 Max level: 6
 Remaining states: 27
 Moves to take: up,up,left,down,right

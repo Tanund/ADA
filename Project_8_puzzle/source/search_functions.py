@@ -7,7 +7,7 @@ from treelib import Node, Tree
 def A_star(init_state=State, h_method=None):
     start_time = time.perf_counter()
     tree = Tree()
-    tree.create_node(str(init_state.board), str(init_state.board))
+    tree.create_node(str(init_state.board) + ' - ' + str(init_state.f_score), str(init_state.board))
     open_state = heapdict()
     visited = []
     open_state[init_state] = init_state.f_score
@@ -32,7 +32,7 @@ def A_star(init_state=State, h_method=None):
                 if not [x for x in open_state.items() if x[0].board == each_state.board]:
                     # added state object as key and f_score as priority
                     open_state[each_state] = each_state.f_score
-                    tree.create_node(str(each_state.board) + ' - ' + str(each_state.action), str(each_state.board), parent=str(each_state.parent_state.board))
+                    tree.create_node(str(each_state.board) + ' - ' + str(each_state.f_score) + ' , ' + str(each_state.action), str(each_state.board), parent=str(each_state.parent_state.board))
 
                     if max_level < each_state.g_score:
                         max_level = each_state.g_score

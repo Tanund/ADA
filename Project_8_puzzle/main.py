@@ -1,16 +1,36 @@
 from source.state import State
 import os
 from source.search_functions import A_star, Dijkstra, BFS, DFS
+from treelib import Node, Tree
 
-def print_state(final_state:State, file_path):
+
+def print_result(final_state:State, file_path, tree:Tree=None):
     parent = final_state.parent_state
     list_state = [final_state]
     while parent:
         list_state.append(parent)
         parent = parent.parent_state
     list_state.reverse()
-    
+
+    all_moves = ",".join([x.action for x in list_state if x.action])
     with open(file_path, 'w') as f:
+        print('------Summary---------')
+        f.write('------Summary---------'+ '\n')
+        print('Number of loops: ' + str(count)+ '\n')
+        f.write('Number of loops: ' + str(count)+ '\n')
+        print('Running time: ' + str(running_time)+ '\n')
+        f.write('Running time: ' + str(running_time)+ '\n')
+        print('Max level: ' + str(max_level)+ '\n')
+        f.write('Max level: ' + str(max_level)+ '\n')
+        print('Remaining states: ' + str(remaining_state)+ '\n')
+        f.write('Remaining states: ' + str(remaining_state)+ '\n')
+        f.write('Moves to take: ' + all_moves + '\n')
+        
+        f.write('\n-------------Tree------------\n')
+    if tree:
+        tree.save2file(file_path)
+    with open(file_path, 'a') as f:
+
         for i in range(len(list_state)):
             # print('----------------------------')
             f.write('----------------------------\n')
@@ -31,17 +51,6 @@ def print_state(final_state:State, file_path):
             for row in list_state[i].board:
                 # print(row)
                 f.write(str(row) + '\n')
-
-        print('------Summary---------')
-        f.write('------Summary---------'+ '\n')
-        print('Number of loops: ' + str(count)+ '\n')
-        f.write('Number of loops: ' + str(count)+ '\n')
-        print('Running time: ' + str(running_time)+ '\n')
-        f.write('Running time: ' + str(running_time)+ '\n')
-        print('Max level: ' + str(max_level)+ '\n')
-        f.write('Max level: ' + str(max_level)+ '\n')
-        print('Remaining states: ' + str(remaining_state)+ '\n')
-        f.write('Remaining states: ' + str(remaining_state)+ '\n')
 
 def isSolvable_new(init, goal) :
     
@@ -91,22 +100,27 @@ if __name__ == '__main__':
     init_state = State(goal_board, init_board, 0)
     
     print('Running A_star')
-    (final_state, count, running_time, max_level, remaining_state) = A_star(init_state)
+    (final_state, count, running_time, max_level, remaining_state, tree) = A_star(init_state)
     if final_state:
-        print_state(final_state, dir + '\\A_star.txt')
+        print_result(final_state, dir + '\\A_star.txt', tree)
+
+    print('Running A_star Manhattan')
+    (final_state, count, running_time, max_level, remaining_state, tree) = A_star(init_state, 'mht')
+    if final_state:
+        print_result(final_state, dir + '\\A_star_mht.txt', tree)
 
     print('Running Dijkstra')
-    (final_state, count, running_time, max_level, remaining_state) = Dijkstra(init_state)
+    (final_state, count, running_time, max_level, remaining_state, tree) = Dijkstra(init_state)
     if final_state:
-        print_state(final_state, dir + '\\Dijkstra.txt')
+        print_result(final_state, dir + '\\Dijkstra.txt', tree)
     
     print('Running BFS')
-    (final_state, count, running_time, max_level, remaining_state) = BFS(init_state)
+    (final_state, count, running_time, max_level, remaining_state, tree) = BFS(init_state)
     if final_state:
-        print_state(final_state, dir + '\\BFS.txt')
+        print_result(final_state, dir + '\\BFS.txt', tree)
 
     print('Running DFS')
-    (final_state, count, running_time, max_level, remaining_state) = DFS(init_state)
+    (final_state, count, running_time, max_level, remaining_state, tree) = DFS(init_state)
     if final_state:
-        print_state(final_state, dir + '\\DFS.txt')
+        print_result(final_state, dir + '\\DFS.txt')
 

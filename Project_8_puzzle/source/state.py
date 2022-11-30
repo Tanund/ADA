@@ -1,30 +1,52 @@
 class State:
-    def __init__(self, goal_board, board, g_score, action=None, parent_state=None):
+    def __init__(self, goal_board, board, g_score, action=None, parent_state=None, h_method=None):
         self.board = board
         self.goal_board = goal_board
         self.size = len(board)
         self.parent_state = parent_state
         self.g_score = g_score
         self.action = action
-        self.h_score = self.calculate_h()
+        self.h_score = self.calculate_h(h_method)
         self.f_score = self.g_score + self.h_score
 
-    def calculate_h(self):
-        """Count misplaced tiles"""
-        h_score = 0
-        for row in range(0, self.size):
-            for col in range(0, self.size):
-                if self.board[row][col] != self.goal_board[row][col] and self.board[row][col] != 0:
-                    h_score = h_score + 1
-        return h_score
-
-    def possible_next_states(self):
+    def find_position_of_tile(self, board, value):
         # find the empty tile
-        for row in range(0, self.size):
-            for col in range(0, self.size):
-                if self.board[row][col] == 0:
-                    row_0 = row
-                    col_0 = col
+        for row in range(0, len(board)):
+            for col in range(0, len(board)):
+                if board[row][col] == value:
+                    return (row, col)
+
+    def calculate_h(self, h_method=None):
+        h_score = 0
+        if h_method == 'mht':
+            # Manhattan method
+            for row in range(0, self.size):
+                for col in range(0, self.size):
+                    value = self.board[row][col]
+                    if value != 0:
+                        # position of goal
+                        (goal_row, goal_col) = self.find_position_of_tile(self.goal_board, value)
+                        # position of init
+                        (cur_row, cur_col) = self.find_position_of_tile(self.board, value)
+                        distance = abs(goal_row - cur_row) + abs(goal_col - cur_col)
+                        h_score = h_score + distance
+            return h_score
+        else:
+            # Count misplaced tiles
+            for row in range(0, self.size):
+                for col in range(0, self.size):
+                    if self.board[row][col] != self.goal_board[row][col] and self.board[row][col] != 0:
+                        h_score = h_score + 1
+            return h_score
+
+    def possible_next_states(self, h_method=None):
+        # find the empty tile
+        (row_0, col_0) = self.find_position_of_tile(self.board, 0)
+        # for row in range(0, self.size):
+        #     for col in range(0, self.size):
+        #         if self.board[row][col] == 0:
+        #             row_0 = row
+        #             col_0 = col
 
         # find valid move
         valid_moves = []
@@ -51,10 +73,9 @@ class State:
             original_value = next_board[move[0]][move[1]]
             next_board[row_0][col_0] = original_value
             next_board[move[0]][move[1]] = 0
-            next_states.append(State(self.goal_board, next_board, self.g_score + 1, move[2],  self))
+            next_states.append(State(self.goal_board, next_board, self.g_score + 1, move[2],  self, h_method))
         return next_states
-
-
+ 
 
         
         

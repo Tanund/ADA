@@ -105,6 +105,11 @@ if __name__ == '__main__':
         print_result(final_state, dir + '\\A_star.txt', tree)
 
     
+    init_state_mht = State(goal_board, init_board, 0, h_method='mht')
+    print('Running A_star Manhattan')
+    (final_state, count, running_time, max_level, remaining_state, tree) = A_star(init_state_mht, 'mht')
+    if final_state:
+        print_result(final_state, dir + '\\A_star_mht.txt', tree)
 
     print('Running Dijkstra')
     (final_state, count, running_time, max_level, remaining_state, tree) = Dijkstra(init_state)
@@ -120,9 +125,3 @@ if __name__ == '__main__':
     (final_state, count, running_time, max_level, remaining_state, tree) = DFS(init_state)
     if final_state:
         print_result(final_state, dir + '\\DFS.txt')
-    
-    init_state = State(goal_board, init_board, 0, h_method='mht')
-    print('Running A_star Manhattan')
-    (final_state, count, running_time, max_level, remaining_state, tree) = A_star(init_state, 'mht')
-    if final_state:
-        print_result(final_state, dir + '\\A_star_mht.txt', tree)

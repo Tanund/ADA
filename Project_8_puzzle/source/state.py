@@ -42,11 +42,6 @@ class State:
     def possible_next_states(self, h_method=None):
         # find the empty tile
         (row_0, col_0) = self.find_position_of_tile(self.board, 0)
-        # for row in range(0, self.size):
-        #     for col in range(0, self.size):
-        #         if self.board[row][col] == 0:
-        #             row_0 = row
-        #             col_0 = col
 
         # find valid move
         valid_moves = []

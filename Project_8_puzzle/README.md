@@ -41,8 +41,8 @@ To solve this 8-puzzle, the idea is to find all of the children wihch is the pos
 To generate children nodes, empty space is moved up, down, left or rigth to find next possible states.
 
 Then, append these children in a data structure depends on the algorithm. Then, select one child from this list and check if it is a goal state or not. If not, new set of children are generated out of this child and appened to the same list.The child selected is then stored in a list called `visited`, this list is used to check whether generated children are already visited or not. If visited, these generated children are not appended to the list.
-![tree](./Doc/tree.png)
 
+![tree](./Doc/tree.png)
 
 To solving this puzzle we can visit all the children one by one until we find the goal. Or, we can find the most promising child that can lead us to goal and then continue in that direction.
 
@@ -70,13 +70,13 @@ Similar to A*, but heuristic function is 0. Same code is used, but the priority 
 
 Instead of selecting a child without direction, Cost function $f(x)$ is used to approximate the cost to reach goal state. The child with lowest cost is then selected and expanded.
 
-$ f(x) = g(x) + h(x)$ ;where $x$ is the current node.
+$f(x)=g(x)+h(x)$ ;where $x$ is the current node.
 
-$ g(x) = $ actual cost of path from initial node to node $x$ or level in tree.
+$g(x)=$ actual cost of path from initial node to node $x$ or level in tree.
 
-$ h(x) = $ heuristic function which estimates the cost of node $x$ to goal node.
+$h(x)=$ heuristic function which estimates the cost of node $x$ to goal node.
 
-$ f(x) = $ actual distance so far + estimated distance remaining
+$f(x)=$ actual distance so far + estimated distance remaining
 
 After getting the cost function, the generated children are appended to `heapdict()` in python which is a priority queue. The priority is our cost function.
 
@@ -105,12 +105,15 @@ Now at second expansion, there is only one child with cost 5. Thus, we can reduc
 - Manhattan distance is better than counting misplaced tiles.
 - BFS and Dijkstra are ok.
 - DFS is worst.
+
 ----------
 
 ## Possilbe future work
 - Try 15-puzzle which is more complicated.
 - Try IDA* (IterativeDeepening A*) algorithm [Complete Solution of the Eight-Puzzle
 and the Benefit of Node Ordering in IDA *](https://www.ijcai.org/Proceedings/93-1/Papers/035.pdf)
+
+----------
 
 ## References
 

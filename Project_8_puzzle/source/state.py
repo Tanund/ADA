@@ -10,7 +10,7 @@ class State:
         self.f_score = self.g_score + self.h_score
 
     def find_position_of_tile(self, board, value):
-        # find the empty tile
+        # find the position of tile "value"
         for row in range(0, len(board)):
             for col in range(0, len(board)):
                 if board[row][col] == value:

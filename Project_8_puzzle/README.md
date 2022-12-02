@@ -108,11 +108,11 @@ Now at second expansion, there is only one child with cost 5. Thus, we can reduc
 
 ----------
 
-## Possilbe future work
+## Possilbe future work & limitation
 - Try 15-puzzle which is more complicated.
 - Try IDA* (IterativeDeepening A*) algorithm [Complete Solution of the Eight-Puzzle
 and the Benefit of Node Ordering in IDA *](https://www.ijcai.org/Proceedings/93-1/Papers/035.pdf)
-
+- Cannot plot the tree for DFS because of maximum recursion depth exceeded.
 ----------
 
 ## References

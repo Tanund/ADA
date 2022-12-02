@@ -28,6 +28,8 @@ There are $9!$ or 362,880  possible configuration in the 3 x 3 board. For any gi
 
 ## Implemenation
 
+## Check if it is solvable or not
+
 First, we need to check if the puzzle is solvable or not. The inversion method is used to check this.
 
 > It is not possible to solve an instance of 8 puzzle if number of inversions is odd in the input state.
@@ -45,6 +47,8 @@ For the solvable board it has 2 inversion which are (8,7) and (8,6).
 For the unsolvable board it has 3 inversion which are (8,5), (8,7) and (8,6)
 
 [How to check if an instance of 8 puzzle is solvable?](https://www.geeksforgeeks.org/check-instance-8-puzzle-solvable/?ref=lbp)
+
+## Approach
 
 To solve this 8-puzzle, the idea is to find all of the children wihch is the possible states of current state, and then choose the child as current state. This process continues until child node that is the same as goal state is found. 
 

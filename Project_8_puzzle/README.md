@@ -40,7 +40,8 @@ Goal        Solvable    Unsolvable
 4 5 6       4   5       4   8
 7 8         8 6 7       5 6 7
 ```
-For the solvable board it has 2 inversion which are (8,7) and (8,6)
+For the solvable board it has 2 inversion which are (8,7) and (8,6).
+
 For the unsolvable board it has 3 inversion which are (8,5), (8,7) and (8,6)
 
 [How to check if an instance of 8 puzzle is solvable?](https://www.geeksforgeeks.org/check-instance-8-puzzle-solvable/?ref=lbp)

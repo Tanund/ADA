@@ -34,7 +34,16 @@ First, we need to check if the puzzle is solvable or not. The inversion method i
 
 > A pair of tiles form an inversion if the values on tiles are in reverse order of their appearance in goal state.
 
-[How to check if an instance of 8 puzzle is solvable?](geeksforgeeks.org/check-instance-8-puzzle-solvable/#:~:text=Following%20is%20simple%20rule%20to,has%2011%20inversions%2C%20therefore%20unsolvable.)
+```python
+Goal        Solvable    Unsolvable
+1 2 3       1 2 3       1 2 3
+4 5 6       4   5       4   8
+7 8         8 6 7       5 6 7
+```
+For the solvable board it has 2 inversion which are (8,7) and (8,6)
+For the unsolvable board it has 3 inversion which are (8,5), (8,7) and (8,6)
+
+[How to check if an instance of 8 puzzle is solvable?](https://www.geeksforgeeks.org/check-instance-8-puzzle-solvable/?ref=lbp)
 
 To solve this 8-puzzle, the idea is to find all of the children wihch is the possible states of current state, and then choose the child as current state. This process continues until child node that is the same as goal state is found. 
 
@@ -61,7 +70,7 @@ BFS visits all the children of the current state in the same level in the tree. 
 The generated children are put in `Queue()` in python which is a FIFO queue. So, the first state appended is visited first.
 
 ### DFS (Depth First Search)
-DFS visits the child of child all the way down. All generated children are put in `LifoQueue()` in python which is LIFO queue.
+DFS visits the child of child all the way down. All generated children are put in `LifoQueue()` in python which is LIFO queue. This is the worst solution because it goes deeper and deeper, and it has a chance that it selects highest cost path which is not optimal.
 
 ### Dijkstra
 Similar to A*, but heuristic function is 0. Same code is used, but the priority is changed to $f(x) = g(x)$. In this case it can be considered as BFS because the priority is the level in the tree and it will visit each children level by level.
